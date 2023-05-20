@@ -46,7 +46,7 @@ export class ImageGalleryItem extends Component {
 }
 
 ImageGalleryItem.propTypes = {
-  images: PropTypes.array,
+  img: PropTypes.array,
 };
 
 export default ImageGalleryItem;
