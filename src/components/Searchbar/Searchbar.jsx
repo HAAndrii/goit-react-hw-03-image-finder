@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import css from './Searchbar.module.css';
+import { MdOutlineSearch } from 'react-icons/md';
 
 export default class Searchbar extends Component {
   state = {
@@ -13,7 +14,10 @@ export default class Searchbar extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state);
+    if (this.state.value.trim() !== '') {
+      this.props.onSubmit(this.state.value);
+    }
+
     this.setState({ value: '' });
   };
 
@@ -21,13 +25,14 @@ export default class Searchbar extends Component {
     return (
       <div>
         <header className={css.search_bar}>
-          <form className="form" onSubmit={this.handleSubmit}>
-            <button type="submit" className="button">
-              <span className="button-label">Search</span>
+          <form className={css.SearchForm} onSubmit={this.handleSubmit}>
+            <button type="submit" className={css.SearchForm_button}>
+              <MdOutlineSearch className={css.SearchForm_icon} />
+              <span className={css.SearchForm_button_label}>Search</span>
             </button>
 
             <input
-              className="input"
+              className={css.SearchForm_input}
               type="text"
               autoComplete="off"
               autoFocus
